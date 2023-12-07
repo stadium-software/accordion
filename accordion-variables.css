@@ -1,0 +1,14 @@
+:root {
+    --stadium-accordion-border-color: #fff;
+    --stadium-accordion-background-color: #fff;
+    --stadium-accordion-topbottom-padding: 12px;
+    --stadium-accordion-rightleft-padding: 12px;
+    --stadium-accordion-header-background-color: #f1f1f1;
+    --stadium-accordion-header-font-size: 18px;
+    --stadium-accordion-header-font-color: #333;
+    --stadium-accordion-header-topbottom-padding: 12px;
+    --stadium-accordion-header-rightleft-padding: 12px;
+    --stadium-accordion-header-collapse-image: url('data: image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZmlsbD0iIzg4ODg4OCIgZD0ibTY0IDE0NGwxOTIgMjI0bDE5Mi0yMjRINjR6Ii8+PC9zdmc+');
+    --stadium-accordion-header-collapse-image-size: 20px;
+    --stadium-accordion-expansion-speed: 500ms;
+}

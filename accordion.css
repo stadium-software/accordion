@@ -1,0 +1,56 @@
+
+.stadium-accordion {
+    & .stadium-accordion-section {
+        padding-right: 16px;
+        margin-top: 10px;
+        border: 1px solid var(--stadium-accordion-border-color);
+    }
+
+    & .stadium-accordion-inner {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows var(--stadium-accordion-expansion-speed);
+        vertical-align: top;
+        background-color: var(--stadium-accordion-background-color);
+    }
+
+    & .expand .stadium-accordion-inner {
+        grid-template-rows: 1fr;
+    }
+
+    & .stadium-accordion-inner > div {
+        overflow: hidden;
+    }
+
+    & .stadium-accordion-header {
+        position: relative;
+        display: flex;
+        align-items: center;
+        font-size: var(--stadium-accordion-header-font-size);
+        color: var(--stadium-accordion-header-font-color);
+        padding: var(--stadium-accordion-header-topbottom-padding) var(--stadium-accordion-header-rightleft-padding);
+        padding-right: max(36px, var(--stadium-accordion-header-rightleft-padding));
+        cursor: pointer;
+        min-height: var(--stadium-accordion-header-collapse-image-size);
+        background-color: var(--stadium-accordion-header-background-color);
+    }
+
+    & .stadium-accordion-header:before {
+        content: "";
+        position: absolute;
+        width: var(--stadium-accordion-header-collapse-image-size);
+        height: 100%;
+        top: 0;
+        right: var(--stadium-accordion-header-rightleft-padding);
+        background-image: var(--stadium-accordion-header-collapse-image);
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: var(--stadium-accordion-header-collapse-image-size);
+        transition: transform var(--stadium-accordion-expansion-speed);
+        transform: rotate(0deg);
+    }
+
+    & .expand .stadium-accordion-header:before {
+        transform: rotate(180deg);
+    }
+}
