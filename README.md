@@ -1,6 +1,8 @@
 # Accordion
 
+An accordion menu is a vertically stacked list of headers that can be clicked to reveal or hide content associated with them. Accordions shorten pages and reduce scrolling, but they increase the interaction cost by requiring people to decide on topic headings.
 
+https://github.com/stadium-software/accordion/assets/2085324/15d3ea4d-bcd9-4fc8-966d-7d582eaf92de
 
 ## Sample applications
 This repo contains one Stadium 6.7 application
@@ -15,19 +17,94 @@ This repo contains one Stadium 6.7 application
 1. Check the *Enable Style Sheet* checkbox in the application properties
 
 ## Global Script Setup
-1. Create a Global Script called "EditableRow"
+1. Create a Global Script called "Accordion"
 2. Add five input parameters to the Global Script
-   1. DataGridClass
-   2. EditColumnHeader
-   3. FormFields
-   4. IdentityColumnHeader
-   5. IdentityValue
-   6. CallbackScript
+   1. ClassName
+   2. Headings
+   3. OpenFirst
+   4. OpenMultiple
 3. Drag a *JavaScript* action into the script
 4. Add the Javascript below into the JavaScript code property (ignore the validation error message "Invalid script was detected")
 ```javascript
+/* Stadium Script version 1.0 */
+const className = ~.Parameters.Input.ClassName;
+const cssClass = "." + className;
+let accordionContainers = document.querySelectorAll(cssClass);
+let accordionContainer;
+if (accordionContainers.length == 0) {
+    console.error("The class '" + className + "' is not assigned to any Container layout control");
+    return false;
+} else if (accordionContainers.length > 1) {
+    console.error("The class '" + className + "' is assigned to multiple DropDowns. Every filterable DropDown must have a unique classname");
+    return false;
+} else { 
+    accordionContainer = accordionContainers[0];
+    accordionContainer.classList.add("stadium-accordion");
+}
 
+let arrHeadings = ~.Parameters.Input.Headings;
+if (!arrHeadings) arrHeadings = [];
+let openmultiple = ~.Parameters.Input.OpenMultiple;
+let startopen = ~.Parameters.Input.OpenFirst;
+
+let toggleAccordion = (e) => {
+    if (!openmultiple) { 
+        let openAccs = accordionContainer.querySelectorAll(".expand.stadium-accordion-section");
+        for (let i = 0; i < openAccs.length; i++) {
+            openAccs[i].classList.remove("expand");
+         }
+    }
+    let section = e.target.closest(".stadium-accordion-section");
+    section.classList.toggle("expand");
+};
+let initAccordion = () => {
+    let accordionSections = accordionContainer.children;
+    for (let i = 0; i < accordionSections.length; i++) {
+        if (!accordionSections[i].querySelector(".container-layout")) { 
+            accordionSections[i].remove();
+            continue;
+        }
+        accordionSections[i].classList.add("stadium-accordion-section");
+        let header = document.createElement("div");
+        header.classList.add("stadium-accordion-header");
+        header.addEventListener("click", toggleAccordion);
+        if (arrHeadings.length > i) header.innerHTML = arrHeadings[i];
+        accordionSections[i].insertBefore(header, accordionSections[i].firstChild);
+        let innerSection = accordionSections[i].querySelector(".container-layout");
+        innerSection.classList.add("stadium-accordion-inner");
+        let innerDiv = document.createElement("div");
+        let innerChildren = innerSection.querySelectorAll(".stack-layout-container");
+        for (let j = 0; j < innerChildren.length; j++) {
+            innerDiv.appendChild(innerChildren[j]);
+        }
+        innerSection.appendChild(innerDiv);
+        if (startopen && i == 0) { 
+            accordionSections[i].classList.toggle("expand");
+        }
+    }
+};
+initAccordion();
 ```
+
+## Page Setup
+1. Drag a *Container* control to a page
+2. Add a class of your choosing to the container's *Classes* property (e.g. stadium-accordion)
+3. To create Accordion Sections, drag any number of *Container* controls into the main *Container* control
+4. Place any nuber of controls inside the Accordion Section containers
+
+![](images/Page-Layout.png)
+
+## Page.Load Setup
+1. Drag the Global Script called "Accordion" into the Page.Load event handler
+2. Provide values for the scripts input parameters
+   1. ClassName: The classname of the accordion parent container (e.g. stadium-accordion)
+   2. Headings: A lits of headings containing the accordion header text
+   3. OpenFirst: A boolean to define if the accordion's first section will initially be shown open
+   4. OpenMultiple: A boolean to define if multiple accordion sections can be opened at the same time
+
+![](images/Headings-List.png)
+
+![](images/Script-Inputs.png)
 
 # Styling
 Various elements in this module can be styled using the two CSS files in this repo
