@@ -18,7 +18,7 @@ This repo contains one Stadium 6.7 application
 
 ## Global Script Setup
 1. Create a Global Script called "Accordion"
-2. Add five input parameters to the Global Script
+2. Add the input parameters below to the Global Script
    1. ClassName
    2. Headings
    3. OpenFirst
@@ -98,7 +98,7 @@ initAccordion();
 1. Drag the Global Script called "Accordion" into the Page.Load event handler
 2. Provide values for the scripts input parameters
    1. ClassName: The classname of the accordion parent container (e.g. stadium-accordion)
-   2. Headings: A lits of headings containing the accordion header text
+   2. Headings: A lits of headings containing the accordion header text (you can use a *List* control and pass that in or just provide a Javascript array directly instead)
    3. OpenFirst: A boolean to define if the accordion's first section will initially be shown open
    4. OpenMultiple: A boolean to define if multiple accordion sections can be opened at the same time
 
