@@ -24,7 +24,7 @@ This repo contains one Stadium 6.7 application
    3. OpenFirst
    4. OpenMultiple
 3. Drag a *JavaScript* action into the script
-4. Add the Javascript below into the JavaScript code property (ignore the validation error message "Invalid script was detected")
+4. Add the Javascript below into the JavaScript code property
 ```javascript
 /* Stadium Script version 1.0 */
 const className = ~.Parameters.Input.ClassName;
