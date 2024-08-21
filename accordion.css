@@ -1,17 +1,17 @@
-/* CSS Version 1.0 https: //github.com/stadium-software/accordion */
+
 .stadium-accordion {
     & .stadium-accordion-section {
         padding-right: 16px;
         margin-top: 10px;
-        border: 1px solid var(--stadium-accordion-border-color);
+        border: 1px solid var(--stadium-accordion-border-color, #fff);
     }
 
     & .stadium-accordion-inner {
         display: grid;
         grid-template-rows: 0fr;
-        transition: grid-template-rows var(--stadium-accordion-expansion-speed);
+        transition: grid-template-rows var(--stadium-accordion-expansion-speed, 500ms);
         vertical-align: top;
-        background-color: var(--stadium-accordion-background-color);
+        background-color: var(--stadium-accordion-background-color, #fff);
     }
 
     & .expand .stadium-accordion-inner {
@@ -26,27 +26,27 @@
         position: relative;
         display: flex;
         align-items: center;
-        font-size: var(--stadium-accordion-header-font-size);
-        color: var(--stadium-accordion-header-font-color);
-        padding: var(--stadium-accordion-header-topbottom-padding) var(--stadium-accordion-header-rightleft-padding);
-        padding-right: max(36px, var(--stadium-accordion-header-rightleft-padding));
+        font-size: var(--stadium-accordion-header-font-size, 16px);
+        color: var(--stadium-accordion-header-font-color, var(--BODY-FONT-COLOR));
+        padding: var(--stadium-accordion-header-topbottom-padding, 12px) var(--stadium-accordion-header-rightleft-padding, 12px);
+        padding-right: max(36px, var(--stadium-accordion-header-rightleft-padding, 12px));
         cursor: pointer;
-        min-height: var(--stadium-accordion-header-collapse-image-size);
-        background-color: var(--stadium-accordion-header-background-color);
+        min-height: var(--stadium-accordion-header-collapse-image-size, 20px);
+        background-color: var(--stadium-accordion-header-background-color, #f5f5f5);
     }
 
     & .stadium-accordion-header:before {
         content: "";
         position: absolute;
-        width: var(--stadium-accordion-header-collapse-image-size);
+        width: var(--stadium-accordion-header-collapse-image-size, 20px);
         height: 100%;
         top: 0;
-        right: var(--stadium-accordion-header-rightleft-padding);
-        background-image: var(--stadium-accordion-header-collapse-image);
+        right: var(--stadium-accordion-header-rightleft-padding, 12px);
+        background-image: var(--stadium-accordion-header-collapse-image, url('data: image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZmlsbD0iIzg4ODg4OCIgZD0ibTY0IDE0NGwxOTIgMjI0bDE5Mi0yMjRINjR6Ii8+PC9zdmc+'));
         background-repeat: no-repeat;
         background-position: center;
-        background-size: var(--stadium-accordion-header-collapse-image-size);
-        transition: transform var(--stadium-accordion-expansion-speed);
+        background-size: var(--stadium-accordion-header-collapse-image-size, 20px);
+        transition: transform var(--stadium-accordion-expansion-speed, 500ms);
         transform: rotate(0deg);
     }
 
