@@ -32,10 +32,10 @@ const cssClass = "." + className;
 let accordionContainers = document.querySelectorAll(cssClass);
 let accordionContainer;
 if (accordionContainers.length == 0) {
-    console.error("The class '" + className + "' is not assigned to any Container layout control");
+    console.error("The class '" + className + "' is not assigned to any Container control");
     return false;
 } else if (accordionContainers.length > 1) {
-    console.error("The class '" + className + "' is assigned to multiple DropDowns. Every filterable DropDown must have a unique classname");
+    console.error("The class '" + className + "' is assigned to multiple controls. Each accordion must have a unique classname");
     return false;
 } else { 
     accordionContainer = accordionContainers[0];
