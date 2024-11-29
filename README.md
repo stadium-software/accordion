@@ -9,7 +9,7 @@ This repo contains one Stadium 6.7 application
 [Accordion.sapz](Stadium6/Accordion.sapz?raw=true)
 
 ## Version 
-1.0 initial
+1.1 Bug Fix: repeated accordions on reinitialise
 
 # Setup
 
@@ -26,7 +26,7 @@ This repo contains one Stadium 6.7 application
 3. Drag a *JavaScript* action into the script
 4. Add the Javascript below into the JavaScript code property
 ```javascript
-/* Stadium Script version 1.0 https://github.com/stadium-software/accordion */
+/* Stadium Script version 1.1 https://github.com/stadium-software/accordion */
 const className = ~.Parameters.Input.ClassName;
 const cssClass = "." + className;
 let accordionContainers = document.querySelectorAll(cssClass);
@@ -37,10 +37,10 @@ if (accordionContainers.length == 0) {
 } else if (accordionContainers.length > 1) {
     console.error("The class '" + className + "' is assigned to multiple controls. Each accordion must have a unique classname");
     return false;
-} else { 
-    accordionContainer = accordionContainers[0];
-    accordionContainer.classList.add("stadium-accordion");
 }
+accordionContainer = accordionContainers[0];
+if (accordionContainer.querySelector(".stadium-accordion-section")) return false;
+accordionContainer.classList.add("stadium-accordion");
 
 let arrHeadings = ~.Parameters.Input.Headings;
 if (!arrHeadings) arrHeadings = [];
