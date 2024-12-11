@@ -24,7 +24,7 @@ This repo contains one Stadium 6.7 application
    3. OpenFirst
    4. OpenMultiple
 3. Drag a *JavaScript* action into the script
-4. Add the Javascript below into the JavaScript code property
+4. Add the Javascript below unchanged into the JavaScript code property
 ```javascript
 /* Stadium Script version 1.1 https://github.com/stadium-software/accordion */
 const className = ~.Parameters.Input.ClassName;
