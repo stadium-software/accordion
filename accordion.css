@@ -19,7 +19,8 @@
     }
 
     & .stadium-accordion-inner > div {
-        overflow: hidden;
+        overflow-y: hidden;
+        overflow-x: auto;
     }
 
     & .stadium-accordion-header {

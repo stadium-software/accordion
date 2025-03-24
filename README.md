@@ -2,7 +2,7 @@
 
 An accordion menu is a vertically stacked list of headers that can be clicked to reveal or hide content associated with them. Accordions shorten pages and reduce scrolling, but they increase the interaction cost by requiring people to decide on topic headings.
 
-https://github.com/stadium-software/accordion/assets/2085324/15d3ea4d-bcd9-4fc8-966d-7d582eaf92de
+![](images/view.gif)
 
 ## Sample applications
 This repo contains one Stadium 6.7 application
@@ -10,6 +10,8 @@ This repo contains one Stadium 6.7 application
 
 ## Version 
 1.1 Bug Fix: repeated accordions on reinitialise
+
+1.2 Added scrollbar to wide accordions; changed "OpenFirst" parameter to "OpenAccordion" (int); added functionality to close an open accordion on click of the header; upgraded CSS to work with Stadium 6.12+
 
 # Setup
 
@@ -21,12 +23,12 @@ This repo contains one Stadium 6.7 application
 2. Add the input parameters below to the Global Script
    1. ClassName
    2. Headings
-   3. OpenFirst
+   3. OpenAccordion
    4. OpenMultiple
 3. Drag a *JavaScript* action into the script
 4. Add the Javascript below unchanged into the JavaScript code property
 ```javascript
-/* Stadium Script version 1.1 https://github.com/stadium-software/accordion */
+/* Stadium Script version 1.2 https://github.com/stadium-software/accordion */
 const className = ~.Parameters.Input.ClassName;
 const cssClass = "." + className;
 let accordionContainers = document.querySelectorAll(cssClass);
@@ -43,22 +45,25 @@ if (accordionContainer.querySelector(".stadium-accordion-section")) return false
 accordionContainer.classList.add("stadium-accordion");
 
 let arrHeadings = ~.Parameters.Input.Headings;
-if (!arrHeadings) arrHeadings = [];
+if (!Array.isArray(arrHeadings)) arrHeadings = [];
 let openmultiple = ~.Parameters.Input.OpenMultiple;
-let startopen = ~.Parameters.Input.OpenFirst;
+let startopen = ~.Parameters.Input.OpenAccordion;
+if (!Number.isInteger(startopen)) startopen = false;
 
 let toggleAccordion = (e) => {
+    let section = e.target.closest(".stadium-accordion-section");
+    let toggleMe = !section.classList.contains("expand") || openmultiple;
     if (!openmultiple) { 
         let openAccs = accordionContainer.querySelectorAll(".expand.stadium-accordion-section");
         for (let i = 0; i < openAccs.length; i++) {
             openAccs[i].classList.remove("expand");
          }
     }
-    let section = e.target.closest(".stadium-accordion-section");
-    section.classList.toggle("expand");
+    if (toggleMe) section.classList.toggle("expand");
 };
 let initAccordion = () => {
     let accordionSections = accordionContainer.children;
+    let counter = 1;
     for (let i = 0; i < accordionSections.length; i++) {
         if (!accordionSections[i].querySelector(".container-layout")) { 
             accordionSections[i].remove();
@@ -78,9 +83,10 @@ let initAccordion = () => {
             innerDiv.appendChild(innerChildren[j]);
         }
         innerSection.appendChild(innerDiv);
-        if (startopen && i == 0) { 
-            accordionSections[i].classList.toggle("expand");
+        if (startopen && counter == startopen) { 
+            accordionSections[i].classList.add("expand");
         }
+        counter ++;
     }
 };
 initAccordion();
@@ -99,8 +105,8 @@ initAccordion();
 2. Provide values for the scripts input parameters
    1. ClassName: The classname of the accordion parent container (e.g. stadium-accordion)
    2. Headings: A lits of headings containing the accordion header text (you can use a *List* control and pass that in or just provide a Javascript array directly instead)
-   3. OpenFirst: A boolean to define if the accordion's first section will initially be shown open
-   4. OpenMultiple: A boolean to define if multiple accordion sections can be opened at the same time
+   3. OpenAccordion (optional): An integer that defines which Accordion will initially be shown open
+   4. OpenMultiple (optional): A boolean to define if multiple accordion sections can be opened at the same time (default: false)
 
 ![](images/Headings-List.png)
 
