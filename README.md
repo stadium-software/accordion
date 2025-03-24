@@ -7,7 +7,7 @@ An accordion menu is a vertically stacked list of headers that can be clicked to
 ## Version 
 1.1 Bug Fix: repeated accordions on reinitialise
 
-1.2 Added scrollbar to wide accordions; changed "OpenFirst" parameter to "OpenAccordion" (int); added functionality to close an open accordion on click of the header; upgraded CSS to work with Stadium 6.12+
+1.2 Added scrollbar to wide accordions; changed "OpenFirst" parameter to "OpenAccordion" (int); added functionality to close an open accordion on click of the header; upgraded CSS to work with Stadium 6.12+; updated px to rem
 
 # Setup
 
