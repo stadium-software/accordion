@@ -4,10 +4,6 @@ An accordion menu is a vertically stacked list of headers that can be clicked to
 
 ![](images/view.gif)
 
-## Sample applications
-This repo contains one Stadium 6.7 application
-[Accordion.sapz](Stadium6/Accordion.sapz?raw=true)
-
 ## Version 
 1.1 Bug Fix: repeated accordions on reinitialise
 
