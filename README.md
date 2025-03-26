@@ -120,8 +120,6 @@ The CSS below is required for the correct functioning of the module. Variables e
 <link rel="stylesheet" href="{EmbeddedFiles}/CSS/accordion-variables.css">
 ``` 
 
-![](images/ApplicationHeadProp.png)
-
 ### v6.12+
 1. Create a folder called "CSS" inside of your Embedded Files in your application
 2. Drag the CSS files from this repo [*accordion.css*](accordion.css) into that folder
