@@ -131,12 +131,13 @@ The CSS below is required for the correct functioning of the module. Variables e
 ### Customising CSS
 1. Open the CSS file called [*accordion-variables.css*](accordion-variables.css) from this repo
 2. Adjust the variables in the *:root* element as you see fit
-3. Add the [*accordion-variables.css*](accordion-variables.css) to the "CSS" folder in the EmbeddedFiles (overwrite)
-4. Paste the link tag below into the *head* property of your application (if you don't already have it there)
+3. Stadium 6.12+ users can comment out any variable they do **not** want to customise
+4. Add the [*accordion-variables.css*](accordion-variables.css) to the "CSS" folder in the EmbeddedFiles (overwrite)
+5. Paste the link tag below into the *head* property of your application (if you don't already have it there)
 ```html
 <link rel="stylesheet" href="{EmbeddedFiles}/CSS/accordion-variables.css">
 ``` 
-5. Stadium 6.12+ users can comment out any variable they do **not** want to customise
+6. Add the file to the "CSS" inside of your Embedded Files in your application
 
 **NOTE: Do not change any of the CSS in the 'accordion.css' file**
 
