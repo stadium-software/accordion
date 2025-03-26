@@ -108,10 +108,10 @@ initAccordion();
 
 ![](images/Script-Inputs.png)
 
-## Applying the CSS
-The CSS below is required for the correct functioning of the module. Some elements can be [customised](#customising-css) using a variables CSS file. 
+## CSS
+The CSS below is required for the correct functioning of the module. Variables exposed in the [*accordion-variables.css*](accordion-variables.css) file can be [customised](#customising-css).
 
-**Stadium 6.6 or higher**
+### Before v6.12
 1. Create a folder called "CSS" inside of your Embedded Files in your application
 2. Drag the two CSS files from this repo [*accordion-variables.css*](accordion-variables.css) and [*accordion.css*](accordion.css) into that folder
 3. Paste the link tags below into the *head* property of your application
@@ -122,14 +122,27 @@ The CSS below is required for the correct functioning of the module. Some elemen
 
 ![](images/ApplicationHeadProp.png)
 
-**Versions lower than 6.6**
-1. Copy the CSS from the two css files into the Stylesheet in your application
+### v6.12+
+1. Create a folder called "CSS" inside of your Embedded Files in your application
+2. Drag the CSS files from this repo [*accordion.css*](accordion.css) into that folder
+3. Paste the link tag below into the *head* property of your application
+```html
+<link rel="stylesheet" href="{EmbeddedFiles}/CSS/accordion.css">
+``` 
 
-## Customising CSS
+### Customising CSS
 1. Open the CSS file called [*accordion-variables.css*](accordion-variables.css) from this repo
 2. Adjust the variables in the *:root* element as you see fit
-3. Overwrite the file in the CSS folder of your application with the customised file
-4. Do not change any CSS other than the variables provided in the *-variables.css file
+3. Add the [*accordion-variables.css*](accordion-variables.css) to the "CSS" folder in the EmbeddedFiles (overwrite)
+4. Paste the link tag below into the *head* property of your application
+```html
+<link rel="stylesheet" href="{EmbeddedFiles}/CSS/accordion-variables.css">
+``` 
+5. Stadium 6.12+ users can comment out any variable they do **not** want to customise
 
-## CSS Upgrading
-To upgrade the CSS in this module, follow the [steps outlined in this repo](https://github.com/stadium-software/samples-upgrading)
+**NOTE: Do not change any of the CSS in the 'accordion.css' file**
+
+## Upgrading Stadium Repos
+Stadium Repos are not static. They change as additional features are added and bugs are fixed. Using the right method to work with Stadium Repos allows for upgrading them in a controlled manner. 
+
+How to use and update application repos is described here: [Working with Stadium Repos](https://github.com/stadium-software/samples-upgrading)
