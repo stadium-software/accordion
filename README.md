@@ -91,7 +91,7 @@ initAccordion();
 ## Page Setup
 1. Drag a *Container* control to a page
 2. Add a class of your choosing to the container's *Classes* property (e.g. stadium-accordion)
-3. To create Accordion Sections, drag any number of *Container* controls into the main *Container* control
+3. To create Accordion sections, drag any number of *Container* controls into the main *Container* control
 4. Place any nuber of controls inside the Accordion Section containers
 
 ![](images/Page-Layout.png)
