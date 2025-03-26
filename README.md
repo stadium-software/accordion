@@ -132,7 +132,7 @@ The CSS below is required for the correct functioning of the module. Variables e
 1. Open the CSS file called [*accordion-variables.css*](accordion-variables.css) from this repo
 2. Adjust the variables in the *:root* element as you see fit
 3. Add the [*accordion-variables.css*](accordion-variables.css) to the "CSS" folder in the EmbeddedFiles (overwrite)
-4. Paste the link tag below into the *head* property of your application
+4. Paste the link tag below into the *head* property of your application (if you don't already have it there)
 ```html
 <link rel="stylesheet" href="{EmbeddedFiles}/CSS/accordion-variables.css">
 ``` 
