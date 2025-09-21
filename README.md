@@ -9,6 +9,8 @@ An accordion menu is a vertically stacked list of headers that can be clicked to
 
 1.2 Added scrollbar to wide accordions; changed "OpenFirst" parameter to "OpenAccordion" (int); added functionality to close an open accordion on click of the header; upgraded CSS to work with Stadium 6.12+; updated px to rem
 
+1.3 Integrated CSS with script
+
 # Setup
 
 ## Application Setup
@@ -24,7 +26,7 @@ An accordion menu is a vertically stacked list of headers that can be clicked to
 3. Drag a *JavaScript* action into the script
 4. Add the Javascript below unchanged into the JavaScript code property
 ```javascript
-/* Stadium Script version 1.2 https://github.com/stadium-software/accordion */
+/* Stadium Script version 1.3 https://github.com/stadium-software/accordion */
 const className = ~.Parameters.Input.ClassName;
 const cssClass = "." + className;
 let accordionContainers = document.querySelectorAll(cssClass);
@@ -85,6 +87,79 @@ let initAccordion = () => {
         counter ++;
     }
 };
+function loadCSS() {
+    let moduleID = "stadium-module";
+    if (!document.getElementById(moduleID)) {
+        let cssMain = document.createElement("style");
+        cssMain.id = moduleID;
+        cssMain.type = "text/css";
+        cssMain.textContent = `
+
+.stadium-accordion {
+    & .stadium-accordion-section {
+        padding-right: 1.6rem;
+        margin-top: 1rem;
+        border: 0.1rem solid var(--stadium-accordion-border-color, #fff);
+    }
+
+    & .stadium-accordion-inner {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows var(--stadium-accordion-expansion-speed, 500ms);
+        vertical-align: top;
+        background-color: var(--stadium-accordion-background-color, #fff);
+    }
+
+    & .expand .stadium-accordion-inner {
+        grid-template-rows: 1fr;
+    }
+
+    & .stadium-accordion-inner > div {
+        overflow-y: hidden;
+        overflow-x: auto;
+    }
+
+    & .stadium-accordion-header {
+        position: relative;
+        display: flex;
+        align-items: center;
+        font-size: var(--stadium-accordion-header-font-size, 1.6rem);
+        color: var(--stadium-accordion-header-font-color, var(--BODY-FONT-COLOR));
+        padding: var(--stadium-accordion-header-topbottom-padding, 1.2rem) var(--stadium-accordion-header-rightleft-padding, 1.2rem);
+        padding-right: max(3.6rem, var(--stadium-accordion-header-rightleft-padding, 1.2rem));
+        cursor: pointer;
+        min-height: var(--stadium-accordion-header-collapse-image-size, 2rem);
+        background-color: var(--stadium-accordion-header-background-color, #f5f5f5);
+    }
+
+    & .stadium-accordion-header:before {
+        content: "";
+        position: absolute;
+        width: var(--stadium-accordion-header-collapse-image-size, 2rem);
+        height: 100%;
+        top: 0;
+        right: var(--stadium-accordion-header-rightleft-padding, 1.2rem);
+        background-image: var(--stadium-accordion-header-collapse-image, url('data: image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxZW0iIGhlaWdodD0iMWVtIiB2aWV3Qm94PSIwIDAgNTEyIDUxMiI+PHBhdGggZmlsbD0iIzg4ODg4OCIgZD0ibTY0IDE0NGwxOTIgMjI0bDE5Mi0yMjRINjR6Ii8+PC9zdmc+'));
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: var(--stadium-accordion-header-collapse-image-size, 2rem);
+        transition: transform var(--stadium-accordion-expansion-speed, 500ms);
+        transform: rotate(0deg);
+    }
+
+    & .expand .stadium-accordion-header:before {
+        transform: rotate(180deg);
+    }
+}
+html {
+    min-height: 100%;
+    font-size: 62.5%;
+}        
+        `;
+        document.head.appendChild(cssMain);
+    }
+}
+loadCSS();
 initAccordion();
 ```
 
@@ -109,24 +184,7 @@ initAccordion();
 ![](images/Script-Inputs.png)
 
 ## CSS
-The CSS below is required for the correct functioning of the module. Variables exposed in the [*accordion-variables.css*](accordion-variables.css) file can be [customised](#customising-css).
-
-### Before v6.12
-1. Create a folder called "CSS" inside of your Embedded Files in your application
-2. Drag the two CSS files from this repo [*accordion-variables.css*](accordion-variables.css) and [*accordion.css*](accordion.css) into that folder
-3. Paste the link tags below into the *head* property of your application
-```html
-<link rel="stylesheet" href="{EmbeddedFiles}/CSS/accordion.css">
-<link rel="stylesheet" href="{EmbeddedFiles}/CSS/accordion-variables.css">
-``` 
-
-### v6.12+
-1. Create a folder called "CSS" inside of your Embedded Files in your application
-2. Drag the CSS files from this repo [*accordion.css*](accordion.css) into that folder
-3. Paste the link tag below into the *head* property of your application
-```html
-<link rel="stylesheet" href="{EmbeddedFiles}/CSS/accordion.css">
-``` 
+Variables exposed in the [*accordion-variables.css*](accordion-variables.css) file can be [customised](#customising-css).
 
 ### Customising CSS
 1. Open the CSS file called [*accordion-variables.css*](accordion-variables.css) from this repo
