@@ -88,7 +88,7 @@ let initAccordion = () => {
     }
 };
 function loadCSS() {
-    let moduleID = "stadium-module";
+    let moduleID = "stadium-accordion";
     if (!document.getElementById(moduleID)) {
         let cssMain = document.createElement("style");
         cssMain.id = moduleID;
